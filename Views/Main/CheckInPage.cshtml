@@ -2,27 +2,12 @@
     ViewBag.Title = "CheckInPage";
     Layout = "~/Views/Shared/_Layoutmain.cshtml";
 }
-@*<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
-
-@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>
-<script type="text/javascript">
-    var jQuery_1_7_1 = $.noConflict(true);
+<script>
+    var $v = $.noConflict(true);
 </script>
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script type="text/javascript">
-    var jQuery_1_9_1 = $.noConflict(true);
-</script>
-<script src="~/Scripts/jquery.signalR-1.0.0-alpha1.min.js"></script>
-<script src="~/SignalR/Hubs"></script>*@
 
-
+ 
 
 <div class="foote"><span id="time"></span> minutes!</div>
 
@@ -49,7 +34,7 @@
         }, 1000);
     }
 
-    function resulttimer() {
+    window.onload = function () {
         var fiveMinutes = 60 * 30,
             display = document.querySelector('#time');
 
@@ -114,12 +99,12 @@
             <button class="btn btn-success" style="float:right; margin-left:5px" onclick="banProcess()">Ban Rules</button>
             <script>
                 function banProcess() {
-                    $.getJSON("/Main/CheckRole", function (t) {
+                    $v.getJSON("/Main/CheckRole", function (t) {
                         if (t == true) {
-                            $("#BanProcess").modal('show');
+                            $v("#BanProcess").modal('show');
                         }
                         else {
-                            $("#occ1").modal('show');
+                            $v("#occ1").modal('show');
                         }
                     })
                 }
@@ -127,12 +112,12 @@
             <button class="btn btn-success" style="float:right" onclick="CallModal()">Submit Result</button>
             <script>
                 function CallModal() {
-                    $.getJSON("/Main/CheckRole", function(t){
+                    $v.getJSON("/Main/CheckRole", function(t){
                         if(t== true){
-                            $("#result-modal").modal('show');
+                            $v("#result-modal").modal('show');
                         }
                         else{
-                            $("#occ").modal('show');
+                            $v("#occ").modal('show');
                         }
                     })
 
@@ -141,7 +126,7 @@
                 function bracket() {
                     var id = @Session["tournamentId"]
 
-                    $.getJSON("/Home/tree",
+                    $v.getJSON("/Home/tree",
                      {
 
                          id: id,
@@ -164,61 +149,61 @@
                                     var rt3 = data[1].RoundNo_Team1;
                                     var rt4 = data[1].RoundNo_Team2;
 
-                                    $("#t1").text(t1);
+                                    $v("#t1").text(t1);
 
-                                    $("#t10").text("0");
-                                    $("#t2").text(t2);
-                                    $("#t11").text("1");
-                                    $("#t3").text(t3);
-                                    $("#t12").text("2");
-                                    $("#t4").text(t4);
-                                    $("#t13").text("3");
+                                    $v("#t10").text("0");
+                                    $v("#t2").text(t2);
+                                    $v("#t11").text("1");
+                                    $v("#t3").text(t3);
+                                    $v("#t12").text("2");
+                                    $v("#t4").text(t4);
+                                    $v("#t13").text("3");
                                     if ( t1==data[0].Team1 && rt1==2) {
-                                        $("#t5").text();
-                                        $("#t14").text("0");
-                                        $("#t111").addClass("winner");
+                                        $v("#t5").text();
+                                        $v("#t14").text("0");
+                                        $v("#t111").addClass("winner");
                                     }
                                     else if (t2==data[0].Team2 && rt2==2) {
-                                        $("#t5").text(R1_win1);
-                                        $("#t14").text("1");
-                                        $("#t222").addClass("winner");
+                                        $v("#t5").text(R1_win1);
+                                        $v("#t14").text("1");
+                                        $v("#t222").addClass("winner");
                                     }
                                     if (t3==data[1].Team1 && rt3==2) {
-                                        $("#t6").text(R1_win2);
-                                        $("#t15").text("2");
-                                        $("#t333").addClass("winner");
+                                        $v("#t6").text(R1_win2);
+                                        $v("#t15").text("2");
+                                        $v("#t333").addClass("winner");
                                     }
                                     else if (t4==data[1].Team2 && rt4==2) {
-                                        $("#t6").text(R1_win2);
-                                        $("#t15").text("3");
-                                        $("#t444").addClass("winner");
-                                        $("#t777").addClass("winner");
+                                        $v("#t6").text(R1_win2);
+                                        $v("#t15").text("3");
+                                        $v("#t444").addClass("winner");
+                                        $v("#t777").addClass("winner");
                                     }
                                     if ( t1==data[0].Team1 && rt1==3) {
-                                        $("#t7").text(R2_win);
-                                        $("#t16").text("0");
-                                        $("#t555").addClass("winner");
-                                        $("#t777").addClass("winner");
+                                        $v("#t7").text(R2_win);
+                                        $v("#t16").text("0");
+                                        $v("#t555").addClass("winner");
+                                        $v("#t777").addClass("winner");
 
                                     }
                                     else if ( t2==data[0].Team2 && rt2==3) {
-                                        $("#t7").text(R2_win);
-                                        $("#t16").text("1");
-                                        $("#t555").addClass("winner");
-                                        $("#t777").addClass("winner");
+                                        $v("#t7").text(R2_win);
+                                        $v("#t16").text("1");
+                                        $v("#t555").addClass("winner");
+                                        $v("#t777").addClass("winner");
 
                                     }
                                     else if ( t3==data[1].Team1 && rt3==3) {
-                                        $("#t7").text(R2_win);
-                                        $("#t16").text("2");
-                                        $("#t666").addClass("winner");
-                                        $("#t777").addClass("winner");
+                                        $v("#t7").text(R2_win);
+                                        $v("#t16").text("2");
+                                        $v("#t666").addClass("winner");
+                                        $v("#t777").addClass("winner");
 
                                     }
                                     else if ( t4==data[1].Team2 && rt4==3) {
-                                        $("#t7").text(R2_win);
-                                        $("#t16").text("3");
-                                        $("#t666").addClass("winner");
+                                        $v("#t7").text(R2_win);
+                                        $v("#t16").text("3");
+                                        $v("#t666").addClass("winner");
                                     }
                                 }
                                 else if (data == false) {
@@ -229,7 +214,7 @@
                             })
 
 
-                            $("#bracket1").modal('show');
+                            $v("#bracket1").modal('show');
 
                     }
 
@@ -360,12 +345,12 @@
             @*updated*@
             <script>
                 function CheckinClickT1() {
-                    $.getJSON("/Main/CheckinClickT1", function (t) {
+                    $v.getJSON("/Main/CheckinClickT1", function (t) {
                         if (t == true) {
-                            $.getJSON("/Main/teamCountCapt", function (t) {
+                            $v.getJSON("/Main/teamCountCapt", function (t) {
                                 if (t == true) {
                                     resulttimer();
-                                    $("#host-modal").modal('show')
+                                    $v("#host-modal").modal('show')
                                     document.getElementById("b6").disabled = false
 
                                 }
@@ -405,7 +390,7 @@
                     @*updated*@
                     <script>
                         function COuntTeam(id) {
-                            $.getJSON("/Main/CountMemberCheckin?id="+id, function (t) {
+                            $v.getJSON("/Main/CountMemberCheckin?id="+id, function (t) {
                                 if (t == true) {
                                     document.getElementById("b6").disabled = false
                                     alert("5 members complete")
@@ -491,68 +476,68 @@
 
 
 
-            @*<script>
+            <script>
 
-                $('.b').click(function (e) {
+                $v('.b').click(function (e) {
                     // prevent the default action when a nav button link is clicked
                     e.preventDefault();
 
                     // ajax query to retrieve the HTML view without refreshing the page.
-                    $.ajax({
+                    $v.ajax({
                         type: 'get',
                         url: '/Chatting/Chat1',
                         dataType: 'html',
                         success: function (html) {
                             // success callback -- replace the div's innerHTML with
                             // the response from the server.
-                            $('.chatt').html(html);
+                            $v('.chatt').html(html);
                         }
                     });
-                    $("#center").animate({ scrollTop: $(document).height( ) }, "fast");
+                    $v("#center").animate({ scrollTop: $(document).height( ) }, "fast");
                     return false
                     });
 
                 //for team chat
-                $('.team').click(function (e) {
+                $v('.team').click(function (e) {
                     // prevent the default action when a nav button link is clicked
                     e.preventDefault();
 
                     // ajax query to retrieve the HTML view without refreshing the page.
-                    $.ajax({
+                    $v.ajax({
                         type: 'get',
                         url: '/Chatting/TeamChat',
                         dataType: 'html',
                         success: function (html) {
                             // success callback -- replace the div's innerHTML with
                             // the response from the server.
-                            $('.chatt').html(html);
+                            $v('.chatt').html(html);
                         }
                     });
-                    $("#center").animate({ scrollTop: $(document).height() }, "fast");
+                    $v("#center").animate({ scrollTop: $v(document).height() }, "fast");
                     return false
                 });
 
                 //for match chat
                 //for team chat
-                $('.match').click(function (e) {
+                $v('.match').click(function (e) {
                     // prevent the default action when a nav button link is clicked
                     e.preventDefault();
 
                     // ajax query to retrieve the HTML view without refreshing the page.
-                    $.ajax({
+                    $v.ajax({
                         type: 'get',
                         url: '/Chatting/Matchchat',
                         dataType: 'html',
                         success: function (html) {
                             // success callback -- replace the div's innerHTML with
                             // the response from the server.
-                            $('.chatt').html(html);
+                            $v('.chatt').html(html);
                         }
                     });
-                    $("#center").animate({ scrollTop: $(document).height() }, "fast");
+                    $v("#center").animate({ scrollTop: $v(document).height() }, "fast");
                     return false
                 });
-            </script>*@
+            </script>
 
         </div>
     </div>
@@ -565,7 +550,7 @@
         @*updated*@
         <script>
             function CheckinClickT2() {
-                $.getJSON("/Main/CheckinClickT2", function (t) {
+                $v.getJSON("/Main/CheckinClickT2", function (t) {
                     if (t == true) {
                         resulttimer();
                         if ("@ViewBag.TeamCount" >= "5") {
@@ -601,7 +586,7 @@
                     @*updated*@
                     <script>
                         function COuntTeam(id) {
-                            $.getJSON("/Main/CountMemberCheckin?id="+id, function (t) {
+                            $v.getJSON("/Main/CountMemberCheckin?id="+id, function (t) {
                                 if (t == true) {
                                     document.getElementById("b6").disabled = false;
                                 }
@@ -700,8 +685,8 @@
         </div>
         <script>
             function MyFunctionP() {
-                $('#BanProcess').modal('hide');
-                $('#BanRules').modal('show');
+                $v('#BanProcess').modal('hide');
+                $v('#BanRules').modal('show');
             }
         </script>
     </div>
@@ -730,7 +715,7 @@
                             </div>
                             <script>
                                 function BanRule(id) {
-                                    $.getJSON("/Main/BanProcess?id=" + id, function (t) {
+                                    $v.getJSON("/Main/BanProcess?id=" + id, function (t) {
                                         if (t == true) {
                                             document.getElementById("rule").disabled = true;
                                             document.getElementById("ruleBtn").disabled = true;
@@ -797,7 +782,7 @@
 </div>
 <script>
     function ChangeStatus() {
-        $.getJSON("/Main/ChangeStatus", function (t) { if (t) { alert("ok ") }});
+        $v.getJSON("/Main/ChangeStatus", function (t) { if (t) { alert("ok ") }});
     }
 </script>
 @*updated*@
@@ -814,7 +799,7 @@
                             <button onclick="Team1Win()" class="btn btn-success" style="margin-left:10px">Team 1 @Session["team1"]</button>
                             <script>
                                 function Team1Win() {
-                                    $.getJSON("/Main/Team1WinR1", function (t)
+                                    $v.getJSON("/Main/Team1WinR1", function (t)
                                     {
                                         if (t=="c")
                                         {
@@ -834,7 +819,7 @@
                     </div>
                     <script>
                         function Team2Win() {
-                            $.getJSON("/Main/Team2WinR2", function (t) {
+                            $v.getJSON("/Main/Team2WinR2", function (t) {
                                 if (t == "c") {
                                     window.location.assign("/Main/NewLobby");
                                 }
